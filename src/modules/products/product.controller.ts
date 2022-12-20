@@ -1,18 +1,26 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ProductsService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('products')
 export class ProductController {
     constructor(
         private readonly producService: ProductsService
     ){}
+    
     @Get()
     async findAll() {
         return await this.producService.getAll()
     }
+
     @Post()
     async create(@Body() createUserDto:CreateProductDto){
         return await this.producService.createProduct(createUserDto)
+    }
+    
+    @Put("/:code")
+    async update(@Param() code: string, @Body() body: UpdateProductDto){
+        return await this.producService.updateProduct(code, body)
     }
 }
