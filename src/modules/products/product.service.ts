@@ -15,8 +15,8 @@ export class ProductsService {
         return await this.productRepository.find()
     }
 
-    async createProduct(product: CreateProductDto){
-        return await this.productRepository.save(product)
+    async createProduct(body: CreateProductDto){
+        return await this.productRepository.save(body)
     }
     async updateProduct(code: string, body: UpdateProductDto){
         return await this.productRepository.update(code, body)

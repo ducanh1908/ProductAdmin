@@ -8,15 +8,15 @@ export class ProductController {
     constructor(
         private readonly producService: ProductsService
     ){}
-    
+
     @Get()
     async findAll() {
         return await this.producService.getAll()
     }
 
     @Post()
-    async create(@Body() createUserDto:CreateProductDto){
-        return await this.producService.createProduct(createUserDto)
+    async create(@Body() body:CreateProductDto){
+        return await this.producService.createProduct(body)
     }
     
     @Put("/:code")
